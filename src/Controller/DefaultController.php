@@ -79,6 +79,13 @@ $evts = $this->getDoctrine()->getManager()->getRepository("App\Entity\Evenement"
 return $this->render('tournoi.html.twig', ['evts' => $evts]);
 }
 /**
+*@Route("/gerer", name="gere")
+*/
+public function gerer():Response{
+  $evts = $this->getDoctrine()->getManager()->getRepository("App\Entity\Evenement")->findBy(["user"=>$this->getUser()]);
+  return $this->render('tournoi.html.twig', ['evts' => $evts]);
+}
+/**
 * @Route("/tournoi/saisirTnoi", name="saisirTnoi")
 * AVEC type de formulaire
 */

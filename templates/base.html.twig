@@ -14,6 +14,14 @@
         {% endblock %}
     </head>
     <body>
+      {% if app.user %}
+          <div class="mb-3">
+              {{ app.user.username }}
+          </div>
+          <div class="mb-3">
+              <a href="{{ path('app_logout') }}">Logout</a>
+          </div>
+      {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>
