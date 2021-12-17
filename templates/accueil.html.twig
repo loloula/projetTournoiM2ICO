@@ -1,0 +1,68 @@
+{% extends 'index.html.twig' %}
+{% block h2 %}<h2>Liste des événements et des tournois à venir</h2>{% endblock %}
+{% block body1 %} {# définition du bloc body utilisé parent #}
+
+<ul>
+{% for e in evts %}
+<li> <h2> <a href="/listetournoi/{{ e.id }}/#portfolio"  class="button scrolly">{{ e.nom }} </a></h2> {# utilise getNom() #}
+<ul>
+{% for t in e.tournois %}
+<li> <em>  ( {{ t.description }} )
+{% endfor %}
+</ul>
+{% endfor %}
+</ul>
+
+{% endblock %}
+{% block p %}Voici les détails des tournois qui auront lieu durant l'évenement
+{% if evtid is defined %}
+  {{ evtid.nom }}
+{% endif %}
+{% endblock %}
+{% block body2 %}
+{% if evtid is defined %}
+
+{% for t in evtid.tournois %}
+<div class="row">
+      <div style=" width: 1500px;">
+          {% if app.user%}
+                <li> <a href="/gerer/{{ t.id }}" > {{ t.nomt }} </em> ( {{ t.description }} )</a>
+
+          {% endif %}
+      </div>
+      <div class="col-4 col-12-mobile">
+      <h2>equipes </h2>
+      {% for e in t.equipes %}<br>
+       {{ e.nomEquipe }}
+      {% endfor %}
+      </div>
+      <div class="col-4 col-12-mobile">
+                  <h2>premier tour </h2>
+                  {% for tour in t.tours %}
+                  {% if tour.nomtour == 'premier tour' %}
+                      {% for poule in tour.poulees %}<br>
+                        {{ poule.nompoule }}
+                          {% for equipe in poule.equipes %}<br>
+                                {{ equipe.nomEquipe }}
+                          {% endfor %}
+                      {% endfor %}
+
+                  {% endif %}
+                  {% endfor %}
+        </div>
+       <div class="col-4 col-12-mobile">
+            <h2>deuxieme tour </h2>
+
+      </div>
+      <div class="col-4 col-12-mobile">
+           <h2>troisieme tour </h2>
+
+     </div>
+
+
+
+  </div>
+  {% endfor %}
+
+{% endif %}
+{% endblock %}

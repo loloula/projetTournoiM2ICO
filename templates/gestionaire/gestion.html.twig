@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des tournois{% endblock %}
+{# définition du bloc title utilisé par le parent base #}
+{% block body %} {# définition du bloc body utilisé parent #}
+<h1>Liste des événements et des tournois</h1>
+<ul>
+{% for e in evts %}
+<li> <h2>{{ e.nom }} </h2> {# utilise getNom() #}
+<ul>
+{% for t in e.tournois %}
+<li> <a href="/gerer/{{ t.id }}">{{ t.nomt }} </a> ( {{ t.description }} )
+{% endfor %}
+</ul>
+{% endfor %}
+</ul>
+{% endblock %}

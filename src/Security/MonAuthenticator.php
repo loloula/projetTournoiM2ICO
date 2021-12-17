@@ -20,7 +20,7 @@ class MonAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'accueil';
 
     private UrlGeneratorInterface $urlGenerator;
 
@@ -52,7 +52,7 @@ class MonAuthenticator extends AbstractLoginFormAuthenticator
 
         // For example:
         //return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('gere'));
+        return new RedirectResponse($this->urlGenerator->generate('accueil'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

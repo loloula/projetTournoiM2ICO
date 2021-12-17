@@ -1,0 +1,56 @@
+{% extends 'index.html.twig' %}
+{% block h2 %}
+{% if nbrequipe < 8 %}
+    <h2>Inscrire votre équipe dans ce tournoi</h2>
+{% else %}
+    <h2>vous pouvez pas s'inscrire votre équipe dans ce tournoi il est plein</h2>
+{% endif %}
+{% endblock %}
+  {% block body1 %}
+      {% if app.user %}
+      {% if nbrequipe < 8 %}
+        {{ form(form) }}
+      {% endif %}
+      {% if app.user.roles[0] == 'ROLE_GUEST' or app.user.roles[0] == 'ROLE_ADMIN' %}
+      <div id="tour" class="row">
+        <div class="col-4 col-12-mobile">
+          <ul>
+            <li> <h2>liste des equipes pour le tournoi </h2>{{tournoiactuel}}
+            {% for e in tournoiactuel.equipes %}
+            <li> <em>{{ e.nomEquipe }} </em>
+            {% endfor %}
+          </ul>
+        </div>
+            <div id="tour1" class="col-4 col-12-mobile">
+            {{ form(boutontour1) }}
+            <ul>
+            <li> <h2>les poules </h2>
+
+            {% for tour in tournoiactuel.tours %}
+            {% if tour.nomtour == 'premier tour' %}
+                    {% set i=0 %}
+                    {% for p in tour.poulees %}
+
+                      <li> <em>{{ p.nompoule }} </em>
+                          {% for e in p.equipes %}
+                                {{ e.nomEquipe }}
+                          {% endfor %}
+                          <a href="/gerer/" >  {{ tour.matchjouers[i].nommatch }} </a>
+                          {% set i=i+1 %}
+                    {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+            </ul>
+            </div>
+            <div id="tour2" class="col-4 col-12-mobile">
+              {{ form(boutontour2) }}
+            </div>
+            <div id="tour3" class="col-4 col-12-mobile">
+              {{ form(boutontour3) }}
+            </div>
+
+        </div>
+      {% endif %}
+      {% endif %}
+{% endblock %}

@@ -9,6 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Tournoi;
 use App\Entity\Evenement;
+use App\Entity\User;
+use App\Entity\Equipe;
+use App\Entity\Matchjouer;
+use App\Entity\Poulee;
+use App\Entity\Tour;
 class DashboardController extends AbstractDashboardController
 {
     /**
@@ -30,6 +35,11 @@ class DashboardController extends AbstractDashboardController
       //  yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Tournois', 'fas fa-list', Tournoi::class);
         yield MenuItem::linkToCrud('Evenement', 'fas fa-list', Evenement::class);
+        yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Equipe', 'fas fa-list', Equipe::class);
+        yield MenuItem::linkToCrud('Matchjouer', 'fas fa-list', Matchjouer::class);
+        yield MenuItem::linkToCrud('Poulee', 'fas fa-list', Poulee::class);
+        yield MenuItem::linkToCrud('Tour', 'fas fa-list', Tour::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
